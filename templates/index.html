@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Placement Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-container input,select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Employee Attrition/Leave </h2>
+        <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="number" name="age" required>
+            
+            <label for="service">Years in Service:</label>
+            <input type="number" name="length_of_service" required>
+            
+            <label for="city">City Name</label>
+            <select name="city_name">
+                <option value="Pune">Pune</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Banglore">Banglore</option>
+            </select>
+            
+            <label for="Department">Department</label>
+            <select name="department_name">
+                <option value="Customer Service">Customer Service</option>
+                <option value="IT">IT</option>
+                <option value="Bakery">Bakery</option>
+                <option value="Processed Foods">Processed Foods</option>
+            </select>
+            </br>
+            <label for="city">Job Title</label>
+            <select name="job_title">
+                <option value="Trainer">Trainer</option>
+                <option value="Developer">Developer</option>
+                <option value="CEO">CEO</option>
+                <option value="Store Manager">Store Manager
+            </option>
+                <option value="Recruiter">Recruiter
+            </option>
+            <option value="Customer Service Manager">Customer Service Manager
+            </option>
+            <option value="Manager">Manager
+            </option>
+            </select>
+
+
+            <label for="store">Store Name</label>
+            <input type="text" name="store_name" value="Store_1" readonly>
+
+            <label for="Gender">Gender</label>
+            <select name="gender_full">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+             </select>
+            </br>
+            <label for="termdesc">Termination reason</label>
+            <input type="text" name="termreason_desc" readonly value="NA">
+            
+            <label for="termdesc">Termination Type</label>
+            <input type="text" name="termtype_desc" readonly value="NA">
+           
+            <label for="BUSINESS_UNIT">BUSINESS_UNIT</label>
+            <select name="BUSINESS_UNIT">
+                <option value="HEADOFFICE">HEADOFFICE</option>
+                <option value="Stores">Stores</option>
+             </select>
+            
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction %}
+        <h3>Attrition Prediction: {{ prediction.Attrition }}</h3>
+        <h3>Probability of Leaving: {{ prediction.Probability }}</h3>
+    {% endif %}
+    </div>
+</body>
+</html>
